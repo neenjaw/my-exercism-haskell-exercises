@@ -6,9 +6,9 @@ collatz n
   | otherwise = Just $ collatzIter n 0
 
 collatzIter :: Integer -> Integer -> Integer
+collatzIter 1 c = c
 collatzIter n c
-  | n == 1 = c
-  | even n = collatzIter nextEven $ succ c
-  | otherwise  = collatzIter nextOdd $ succ c
-  where nextEven = n `div` 2
-        nextOdd = 3 * n + 1
+  | even n = collatzIter nextIfEven $ succ c
+  | otherwise  = collatzIter nextIfOdd $ succ c
+  where nextIfEven = n `quot` 2
+        nextIfOdd = 3 * n + 1
